@@ -3,11 +3,11 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import postRoutes from './routes/posts.js';
+import postRoutes from './routes/notes.js';
 
 const app = express();
 
-app.use('/posts', postRoutes);
+app.use('/notes', postRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));

@@ -1,11 +1,14 @@
 import React from 'react';
 import { Container, AppBar, Typography, Grid, Grow } from '@material-ui/core';
 
+import logo from './images/code-notes-logo.png';
+
 const App = () => {
   return (
     <Container maxWidth="lg">
       <AppBar position="static" color="inherit">
         <Typography>CODE NOTES</Typography>
+        <img src={logo} alt="code notes" height="60" />
       </AppBar>
       <Grow in>
         <Container>

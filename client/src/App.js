@@ -1,19 +1,16 @@
 import React from 'react';
 import { Container, AppBar, Typography, Grid, Grow, ThemeProvider } from '@material-ui/core';
 
-
+import Header from './components/Header/Header';
 import Form from './components/Form/Form';
 import Notes from './components/Notes/Notes';
-import logo from './images/code-notes-logo.png';
 import CustomTheme from './CustomTheme';
 
 const App = () => {
   return (
     <ThemeProvider theme={CustomTheme}>
       <Container maxWidth="lg">
-        <AppBar position="static" color="primary">
-          <img src={logo} alt="code notes" height="60" width="180" />
-        </AppBar>
+        <Header />
         <Grow in>
           <Container>
             <Grid container justify="space-between" alignItems="stretch" spacing={3}>

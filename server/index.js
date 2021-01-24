@@ -7,11 +7,11 @@ import postRoutes from './routes/notes.js';
 
 const app = express();
 
-app.use('/notes', postRoutes);
-
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 app.use(cors());
+
+app.use('/notes', postRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://mansor:Dammam_1973@cluster0.3g2t1.mongodb.net/<dbname>?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;

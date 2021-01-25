@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { getNotes } from './actions/notes';
 import Header from './components/Header/Header';
-import Form from './components/Form/Form';
+import AddForm from './components/Form/AddForm';
 import Notes from './components/Notes/Notes';
 import CustomTheme from './CustomTheme';
 
@@ -26,7 +26,7 @@ const App = () => {
                 <Notes />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <Form />
+                <AddForm />
               </Grid>
             </Grid>
           </Container>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
+import { useDispatch } from 'react-redux';
 
 import useStyle from './styles';
+import { createNote } from '../../actions/notes';
 
 
 const AddForm = () => {
@@ -16,9 +18,12 @@ const AddForm = () => {
   });
 
   const classes = useStyle();
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
+    dispatch(createNote(noteData));
   };
 
   const clear = () => {
@@ -31,7 +36,7 @@ const AddForm = () => {
         <Typography variant="h6">ADD NEW NOTE</Typography>
         <TextField name="creator" variant="outlined" label="Creator" fullWidth value={noteData.creator} onChange={(event) => setNoteData({ ...noteData, creator: event.target.value})} />
         <TextField name="title" variant="outlined" label="Title" fullWidth value={noteData.title} onChange={(event) => setNoteData({ ...noteData, title: event.target.value})} />
-        <TextField name="note" variant="outlined" label="Note" fullWidth value={noteData.note} onChange={(event) => setNoteData({ ...noteData, note: event.target.value})} />
+        <TextField name="note" variant="outlined" label="Note" rows="15" multiline fullWidth value={noteData.note} onChange={(event) => setNoteData({ ...noteData, note: event.target.value})} />
         <TextField name="tags" variant="outlined" label="Tags" fullWidth value={noteData.tags} onChange={(event) => setNoteData({ ...noteData, tags: event.target.value})} />
         <div className={classes.fileInput}>
           <FileBase type="file" multiple={false} onDone={({base64}) => setNoteData({ ...noteData, image: base64})} />

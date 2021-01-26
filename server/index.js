@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use('/notes', noteRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://mansor:Dammam_1973@cluster0.3g2t1.mongodb.net/<dbname>?retryWrites=true&w=majority'
+const CONNECTION_URL = 'mongodb+srv://mansor:Dammam_1973@cluster0.3g2t1.mongodb.net/code_notes?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })

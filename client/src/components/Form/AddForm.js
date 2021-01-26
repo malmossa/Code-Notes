@@ -32,7 +32,7 @@ const AddForm = () => {
 
   return (
     <Paper className={classes.paper}>
-      <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`}>
+      <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">ADD NEW NOTE</Typography>
         <TextField name="creator" variant="outlined" label="Creator" fullWidth value={noteData.creator} onChange={(event) => setNoteData({ ...noteData, creator: event.target.value})} />
         <TextField name="title" variant="outlined" label="Title" fullWidth value={noteData.title} onChange={(event) => setNoteData({ ...noteData, title: event.target.value})} />

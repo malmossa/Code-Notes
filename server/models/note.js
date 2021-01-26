@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const noteSchema = mongoose.Schema({
   title: String,
   note: String,
-  creator: String,
+  author: String,
   tags: [String],
   image: String,
   likeCount: {

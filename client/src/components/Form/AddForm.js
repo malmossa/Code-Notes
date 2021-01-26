@@ -10,7 +10,7 @@ import { createNote } from '../../actions/notes';
 const AddForm = () => {
 
   const [noteData, setNoteData] = useState({
-    creator: '',
+    author: '',
     title: '',
     note: '',
     tags: '',
@@ -34,7 +34,7 @@ const AddForm = () => {
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">ADD NEW NOTE</Typography>
-        <TextField name="creator" variant="outlined" label="Creator" fullWidth value={noteData.creator} onChange={(event) => setNoteData({ ...noteData, creator: event.target.value})} />
+        <TextField name="author" variant="outlined" label="Author" fullWidth value={noteData.author} onChange={(event) => setNoteData({ ...noteData, author: event.target.value})} />
         <TextField name="title" variant="outlined" label="Title" fullWidth value={noteData.title} onChange={(event) => setNoteData({ ...noteData, title: event.target.value})} />
         <TextField name="note" variant="outlined" label="Note" rows="15" multiline fullWidth value={noteData.note} onChange={(event) => setNoteData({ ...noteData, note: event.target.value})} />
         <TextField name="tags" variant="outlined" label="Tags" fullWidth value={noteData.tags} onChange={(event) => setNoteData({ ...noteData, tags: event.target.value})} />

@@ -10,7 +10,7 @@ const Notes = () => {
   const notes = useSelector((state) => state.notes);
 
   return (
-    !notes.length ? <CircularProgress /> : (
+    !notes.length ? <CircularProgress className={classes.progress} /> : (
       <Grid className={classes.root} container alignItems="stretch" spacing={2}>
         {notes.map((note) => (
             <Grid key={note._id} item xs={12} sm={6}>

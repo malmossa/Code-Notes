@@ -14,7 +14,7 @@ const AddForm = () => {
     title: '',
     note: '',
     tags: '',
-    image: ''
+    uploadedImage: ''
   });
 
   const classes = useStyle();
@@ -39,7 +39,7 @@ const AddForm = () => {
         <TextField name="note" variant="outlined" label="Note" rows="15" multiline fullWidth value={noteData.note} onChange={(event) => setNoteData({ ...noteData, note: event.target.value})} />
         <TextField name="tags" variant="outlined" label="Tags" fullWidth value={noteData.tags} onChange={(event) => setNoteData({ ...noteData, tags: event.target.value})} />
         <div className={classes.fileInput}>
-          <FileBase type="file" multiple={false} onDone={({base64}) => setNoteData({ ...noteData, image: base64})} />
+          <FileBase type="file" multiple={false} onDone={({base64}) => setNoteData({ ...noteData, uploadedImage: base64})} />
         </div>
         <Button className={classes.submitBtn} variant="contained" color="primary" size="large" type="submit" fullWidth>ADD</Button>
         <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>CLEAR</Button>

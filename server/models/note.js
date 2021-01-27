@@ -5,7 +5,7 @@ const noteSchema = mongoose.Schema({
   note: String,
   author: String,
   tags: [String],
-  image: String,
+  uploadedImage: String,
   likeCount: {
     type: Number,
     default: 0

@@ -14,4 +14,10 @@ export default makeStyles({
   icon: {
     marginRight: '5px',
   },
+  tags: {
+    marginTop: 12,
+  },
+  author: {
+    marginBottom: 12,
+  },
 })

@@ -2,8 +2,6 @@ import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 export default makeStyles({
   root: {
-    display: 'flex',
-    alignItems: 'center',
     marginTop: '20px',
   },
   progress: {

@@ -17,8 +17,8 @@ const App = () => {
 
   return (
     <ThemeProvider theme={CustomTheme}>
+      <Header />
       <Container maxWidth="lg">
-        <Header />
         <Grow in>
           <Container>
             <Grid container justify="space-between" alignItems="stretch" spacing={3}>

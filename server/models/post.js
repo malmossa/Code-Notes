@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
-const noteSchema = mongoose.Schema({
+const postSchema = mongoose.Schema({
   title: String,
-  note: String,
+  description: String,
+  recipe: String,
   author: String,
   tags: [String],
   uploadedImage: String,
@@ -16,6 +17,6 @@ const noteSchema = mongoose.Schema({
   },
 });
 
-const Note = mongoose.model('Note', noteSchema);
+const Post = mongoose.model('Post', postSchema);
 
-export default Note;
+export default Post;

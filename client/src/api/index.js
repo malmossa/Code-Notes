@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/notes';
+const url = 'http://localhost:5000/posts';
 
-export const fetchNotes = () => axios.get(url);
-export const createNote = (newNote) => axios.post(url, newNote);
+export const fetchPosts = () => axios.get(url);
+export const createPost = (newPost) => axios.post(url, newPost);

@@ -4,12 +4,12 @@ import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 
 import useStyle from './styles';
-import { createNote } from '../../actions/notes';
+import { createPost } from '../../actions/posts';
 
 
 const AddForm = () => {
 
-  const [noteData, setNoteData] = useState({
+  const [postData, setPostData] = useState({
     author: '',
     title: '',
     note: '',
@@ -23,7 +23,7 @@ const AddForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(createNote(noteData));
+    dispatch(createPost(postData));
   };
 
   const clear = () => {
@@ -34,12 +34,12 @@ const AddForm = () => {
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">ADD NEW RECIPES</Typography>
-        <TextField name="author" variant="outlined" label="Author" fullWidth value={noteData.author} onChange={(event) => setNoteData({ ...noteData, author: event.target.value})} />
-        <TextField name="title" variant="outlined" label="Title" fullWidth value={noteData.title} onChange={(event) => setNoteData({ ...noteData, title: event.target.value})} />
-        <TextField name="note" variant="outlined" label="Note" rows="5" multiline fullWidth value={noteData.note} onChange={(event) => setNoteData({ ...noteData, note: event.target.value})} />
-        <TextField name="tags" variant="outlined" label="Tags" fullWidth value={noteData.tags} onChange={(event) => setNoteData({ ...noteData, tags: event.target.value})} />
+        <TextField name="author" variant="outlined" label="Author" fullWidth value={postData.author} onChange={(event) => setPostData({ ...postData, author: event.target.value})} />
+        <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(event) => setPostData({ ...postData, title: event.target.value})} />
+        <TextField name="note" variant="outlined" label="Note" rows="5" multiline fullWidth value={postData.note} onChange={(event) => setPostData({ ...postData, note: event.target.value})} />
+        <TextField name="tags" variant="outlined" label="Tags" fullWidth value={postData.tags} onChange={(event) => setPostData({ ...postData, tags: event.target.value})} />
         <div className={classes.fileInput}>
-          <FileBase type="file" multiple={false} onDone={({base64}) => setNoteData({ ...noteData, uploadedImage: base64})} />
+          <FileBase type="file" multiple={false} onDone={({base64}) => setPostData({ ...postData, uploadedImage: base64})} />
         </div>
         <Button className={classes.submitBtn} variant="contained" color="primary" size="large" type="submit" fullWidth>ADD</Button>
         <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>CLEAR</Button>

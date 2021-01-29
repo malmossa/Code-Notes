@@ -2,19 +2,19 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Grid, CircularProgress } from '@material-ui/core';
 
-import Note from './Note/Note';
+import Post from './Post/Post';
 import useStyle from './styles';
 
-const Notes = () => {
+const Posts = () => {
   const classes = useStyle();
-  const notes = useSelector((state) => state.notes);
+  const posts = useSelector((state) => state.posts);
 
   return (
-    !notes.length ? <CircularProgress className={classes.progress} /> : (
+    !posts.length ? <CircularProgress className={classes.progress} /> : (
       <Grid className={classes.root} container alignItems="stretch" spacing={2}>
-        {notes.map((note) => (
-            <Grid key={note._id} item xs={12} sm={6}>
-              <Note note={note} />
+        {posts.map((post) => (
+            <Grid key={post._id} item xs={12} sm={6}>
+              <Post post={post} />
             </Grid>
           ))
         }
@@ -23,4 +23,4 @@ const Notes = () => {
   )
 };
 
-export default Notes;
+export default Posts;

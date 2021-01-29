@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 
-import notes from './notes';
+import posts from './posts';
 
-export default combineReducers({ notes });
+export default combineReducers({ posts });

@@ -1,17 +1,28 @@
 import React from 'react';
-import { Card, Typography, CardHeader, CardMedia, CardContent, CardActions, IconButton, Button, Divider } from '@material-ui/core';
+import { Card, Typography, CardHeader, CardMedia, CardContent, CardActions, IconButton, Button, Divider, Avatar } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import DeleteIcon from '@material-ui/icons/Delete';
+import clsx from 'clsx';
 import moment from 'moment';
 
 import useStyle from './styles';
 
 const Post = ({post}) => {
   const classes = useStyle();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   return (
     <Card className={classes.root}>
       <CardHeader
+        avatar={
+          <Avatar className={classes.avatar}>M</Avatar>
+        }
         title={post.title}
         subheader={moment(post.createdAt).fromNow()}
         action={
@@ -27,7 +38,6 @@ const Post = ({post}) => {
         </Typography>
         <Typography className={classes.tags} variant="body2" color="secondary" component="p">{post.tags.map((tag) => `#${tag} `)}</Typography>
       </CardContent>
-      <Divider />
       <CardActions className={classes.CardActions}>
         <Button size="small" color="secondary" onClick={() => {}}>
           <ThumbUpIcon className={classes.icon} fontSize="small" />
@@ -37,6 +47,14 @@ const Post = ({post}) => {
         <Button size="small" color="secondary" onClick={() => {}}>
           <DeleteIcon className={classes.icon} fontSize="small" />
           Delete
+        </Button>
+        <Button className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more">
+          <ExpandMoreIcon />
         </Button>
       </CardActions>
     </Card>

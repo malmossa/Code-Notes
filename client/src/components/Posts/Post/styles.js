@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import createPalette from '@material-ui/core/styles/createPalette';
 
 export default makeStyles({
   root: {
@@ -20,4 +21,7 @@ export default makeStyles({
   author: {
     marginBottom: 12,
   },
+  avatar: {
+    backgroundColor: '#660066',
+  }
 })

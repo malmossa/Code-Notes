@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar } from '@material-ui/core';
 
-import Logo from '../../images/code-notes-logo.png'
+import Logo from '../../images/social-recipes-logo.png'
 import useStyles from './styles';
 
 const Header = () => {

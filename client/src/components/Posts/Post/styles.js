@@ -23,5 +23,15 @@ export default makeStyles({
   },
   avatar: {
     backgroundColor: '#660066',
+  },
+  expand: {
+    marginLeft: 'auto',
+    color: '#660066',
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  marginLeft: {
+    marginLeft: 10,
   }
 })

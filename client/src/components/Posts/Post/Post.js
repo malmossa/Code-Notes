@@ -9,7 +9,7 @@ import moment from 'moment';
 
 import useStyle from './styles';
 
-const Post = ({post}) => {
+const Post = ({post, setCurrentId}) => {
   const classes = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -27,7 +27,7 @@ const Post = ({post}) => {
         title={post.title}
         subheader={moment(post.createdAt).fromNow()}
         action={
-          <IconButton>
+          <IconButton onClick={() => setCurrentId(post._id)}>
             <MoreVertIcon />
           </IconButton>
         } />
@@ -48,9 +48,11 @@ const Post = ({post}) => {
           <ThumbUpIcon className={classes.icon} fontSize="small" />
           {post.likeCount}
         </IconButton>
+
         <IconButton size="small" color="secondary" onClick={() => {}}>
           <DeleteIcon className={classes.marginLeft} fontSize="small" />
         </IconButton>
+
         <IconButton className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}

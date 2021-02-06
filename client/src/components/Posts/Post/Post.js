@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography, CardHeader, CardMedia, CardContent, CardActions, IconButton, Button, Divider, Avatar, Collapse } from '@material-ui/core';
+import { Card, Typography, CardHeader, CardMedia, CardContent, CardActions, IconButton, Avatar, Collapse } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -9,7 +9,7 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
 import useStyle from './styles';
-import { deletePost } from '../../../actions/posts';
+import { deletePost, likePost } from '../../../actions/posts';
 
 const Post = ({post, setCurrentId}) => {
   const classes = useStyle();
@@ -48,7 +48,7 @@ const Post = ({post, setCurrentId}) => {
 
       <CardActions className={classes.CardActions} disableSpacing>
 
-        <IconButton size="small" color="secondary" onClick={() => {}}>
+        <IconButton size="small" color="secondary" onClick={() => dispatch(likePost(post._id))}>
           <ThumbUpIcon className={classes.icon} fontSize="small" />
           {post.likeCount}
         </IconButton>

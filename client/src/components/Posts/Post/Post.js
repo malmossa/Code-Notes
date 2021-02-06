@@ -6,11 +6,15 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import clsx from 'clsx';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
 
 import useStyle from './styles';
+import { deletePost } from '../../../actions/posts';
 
 const Post = ({post, setCurrentId}) => {
   const classes = useStyle();
+  const dispatch = useDispatch();
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -49,7 +53,7 @@ const Post = ({post, setCurrentId}) => {
           {post.likeCount}
         </IconButton>
 
-        <IconButton size="small" color="secondary" onClick={() => {}}>
+        <IconButton size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
           <DeleteIcon className={classes.marginLeft} fontSize="small" />
         </IconButton>
 

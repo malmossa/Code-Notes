@@ -1,40 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useStyle from './styles';
-import { createPost } from '../../actions/posts';
+import { createPost, updatePost } from '../../actions/posts';
 
 
-const AddForm = () => {
+const AddForm = ({ currentId, setCurrentId }) => {
 
-  const [postData, setPostData] = useState({
-    author: '',
-    title: '',
-    description: '',
-    recipe: '',
-    tags: '',
-    uploadedImage: ''
-  });
+  const [postData, setPostData] = useState({ author: '', title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
 
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
   const classes = useStyle();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(post) setPostData(post);
+  }, [post])
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(createPost(postData));
+    if(currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
+
+    clear();
   };
 
   const clear = () => {
+    setCurrentId(null);
+    setPostData({ author: '', title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
 
   };
 
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6">ADD NEW RECIPES</Typography>
+        <Typography variant="h6">{ currentId ? 'EDITING THIS RECIPE' : 'ADD NEW RECIPE'}</Typography>
         <TextField name="author" variant="outlined" label="Author" fullWidth value={postData.author} onChange={(event) => setPostData({ ...postData, author: event.target.value})} />
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(event) => setPostData({ ...postData, title: event.target.value})} />
         <TextField name="description" variant="outlined" label="Description" rows="3" multiline fullWidth value={postData.description} onChange={(event) => setPostData({ ...postData, description: event.target.value})} />

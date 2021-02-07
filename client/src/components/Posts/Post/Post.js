@@ -46,15 +46,15 @@ const Post = ({post, setCurrentId}) => {
         <Typography className={classes.tags} variant="body2" color="secondary" component="p">{post.tags.map((tag) => `#${tag} `)}</Typography>
       </CardContent>
 
-      <CardActions className={classes.CardActions} disableSpacing>
+      <CardActions disableSpacing>
 
         <IconButton size="small" color="secondary" onClick={() => dispatch(likePost(post._id))}>
-          <ThumbUpIcon className={classes.icon} fontSize="small" />
-          {post.likeCount}
+          <ThumbUpIcon  fontSize="small" />
+          &nbsp; {post.likeCount} &nbsp;
         </IconButton>
 
         <IconButton size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
-          <DeleteIcon className={classes.marginLeft} fontSize="small" />
+          <DeleteIcon  fontSize="small" />
         </IconButton>
 
         <IconButton className={clsx(classes.expand, {

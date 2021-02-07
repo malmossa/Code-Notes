@@ -39,7 +39,7 @@ const Post = ({post, setCurrentId}) => {
       <CardMedia className={classes.media} image={post.uploadedImage} title={post.title} />
 
       <CardContent>
-        <Typography className={classes.author} variant="body2" color="secondary" component="p">{`By : ${post.author}`}</Typography>
+        <Typography className={classes.author} variant="body2" color="secondary" component="p">{`By - ${post.author}`}</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {post.description}
         </Typography>

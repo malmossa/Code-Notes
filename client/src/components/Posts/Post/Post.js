@@ -1,9 +1,12 @@
 import React from 'react';
-import { Card, Typography, CardHeader, CardMedia, CardContent, CardActions, IconButton, Avatar, Collapse } from '@material-ui/core';
+import { Card, Typography, CardHeader, CardMedia, CardContent, CardActions, IconButton, Avatar, Collapse, Button } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import EditIcon from '@material-ui/icons/Edit';
 import clsx from 'clsx';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
@@ -15,8 +18,17 @@ const Post = ({post, setCurrentId}) => {
   const classes = useStyle();
   const dispatch = useDispatch();
 
-  const [expanded, setExpanded] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleOptionClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
+  const handleOptionClose = () => {
+    setAnchorEl(null);
+  };
+
+
+  const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -31,9 +43,25 @@ const Post = ({post, setCurrentId}) => {
         title={post.title}
         subheader={moment(post.createdAt).fromNow()}
         action={
-          <IconButton onClick={() => setCurrentId(post._id)}>
-            <MoreVertIcon />
-          </IconButton>
+          <div>
+            <Button aria-controls="option-menu" aria-haspopup="true" onClick={handleOptionClick}>
+              <MoreVertIcon />
+            </Button>
+            <Menu id="option-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleOptionClose}>
+              <MenuItem>
+                <IconButton size="small" color="secondary" onClick={() => setCurrentId(post._id)}>
+                  <EditIcon  fontSize="small" />
+                  &nbsp; Edit
+                </IconButton>
+              </MenuItem>
+              <MenuItem>
+                <IconButton size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
+                  <DeleteIcon  fontSize="small" />
+                  &nbsp; Delete
+                </IconButton>
+              </MenuItem>
+            </Menu>
+          </div>
         } />
 
       <CardMedia className={classes.media} image={post.uploadedImage} title={post.title} />
@@ -51,10 +79,6 @@ const Post = ({post, setCurrentId}) => {
         <IconButton size="small" color="secondary" onClick={() => dispatch(likePost(post._id))}>
           <ThumbUpIcon  fontSize="small" />
           &nbsp; {post.likeCount} &nbsp;
-        </IconButton>
-
-        <IconButton size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
-          <DeleteIcon  fontSize="small" />
         </IconButton>
 
         <IconButton className={clsx(classes.expand, {

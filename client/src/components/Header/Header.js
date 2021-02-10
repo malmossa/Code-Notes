@@ -21,7 +21,7 @@ const Header = () => {
             <Button className={classes.logout}>Logout</Button>
           </div>
         ) : (
-          <Button className={classes.signIn}  component={Link} to="/auth">Sign In</Button>
+          <Button className={classes.signIn} component={Link} to="/auth">Sign In</Button>
         )
       }
       </Toolbar>

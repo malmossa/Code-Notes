@@ -38,8 +38,9 @@ const Auth = () => {
                   <Input name="lastName" label="Last Name" handleChange={handleChange} half />
                 </React.Fragment>
               )}
-              <Input name="email" label="Emain Address" handleChange={handleChange} type="email" />
+              <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
               <Input name="Password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} hanleShowPassword={hanleShowPassword}  />
+              { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
               {isSignup ? 'Sign Up' : 'Sign In'}

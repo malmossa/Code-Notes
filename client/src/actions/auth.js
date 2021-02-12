@@ -17,6 +17,7 @@ export const signup = (formData, history) => async (dispatch) => {
     // Sign up user
 
     history.push('/')
-  } catch (error)
-  console.log(error)
+  } catch (error) {
+    console.log(error)
+  }
 };

@@ -24,7 +24,7 @@ const Auth = () => {
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const handleSubmit = (event) => {
-    event.perventDefault();
+    event.preventDefault();
 
     if(isSignup) {
       dispatch(signup(formData, history))

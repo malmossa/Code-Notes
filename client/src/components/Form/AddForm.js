@@ -9,11 +9,12 @@ import { createPost, updatePost } from '../../actions/posts';
 
 const AddForm = ({ currentId, setCurrentId }) => {
 
-  const [postData, setPostData] = useState({ author: '', title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
+  const [postData, setPostData] = useState({ title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
 
-  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+  const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
   const classes = useStyle();
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     if(post) setPostData(post);
@@ -22,26 +23,35 @@ const AddForm = ({ currentId, setCurrentId }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(currentId) {
-      dispatch(updatePost(currentId, postData));
+    if(currentId ===0) {
+      dispatch(createPost({...postData, name: user?.result?.name}));
+      clear();
     } else {
-      dispatch(createPost(postData));
+      dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
+      clear();
     }
-
-    clear();
   };
 
   const clear = () => {
     setCurrentId(null);
-    setPostData({ author: '', title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
+    setPostData({ title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
 
+  };
+
+  if(!user?.result?.name) {
+    return (
+      <Paper className={classes.paper}>
+         <Typography variant="h6" align="center">
+           Please sign in to add your own recipes.
+         </Typography>
+      </Paper>
+    )
   };
 
   return (
     <Paper className={classes.paper}>
       <Typography align="center" variant="h6">{ currentId ? 'EDITING THIS RECIPE' : 'ADD NEW RECIPE'}</Typography>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <TextField name="author" variant="outlined" label="Author" required  fullWidth size="small"  value={postData.author} onChange={(event) => setPostData({ ...postData, author: event.target.value})} />
         <TextField name="title" variant="outlined" label="Title" required fullWidth size="small" value={postData.title} onChange={(event) => setPostData({ ...postData, title: event.target.value})} />
         <TextField name="description" variant="outlined" label="Description" required rows="3" multiline fullWidth value={postData.description} onChange={(event) => setPostData({ ...postData, description: event.target.value})} />
         <TextField name="recipe" variant="outlined" label="Recipe"  rows="10" required multiline fullWidth value={postData.recipe} onChange={(event) => setPostData({ ...postData, recipe: event.target.value})} />

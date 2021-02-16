@@ -11,19 +11,25 @@ const AddForm = ({ currentId, setCurrentId }) => {
 
   const [postData, setPostData] = useState({ title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
 
-  const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
+  const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const classes = useStyle();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     if(post) setPostData(post);
-  }, [post])
+  }, [post]);
+
+  const clear = () => {
+    setCurrentId(0);
+    setPostData({ title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
+
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(currentId ===0) {
+    if(currentId === 0) {
       dispatch(createPost({...postData, name: user?.result?.name}));
       clear();
     } else {
@@ -32,11 +38,6 @@ const AddForm = ({ currentId, setCurrentId }) => {
     }
   };
 
-  const clear = () => {
-    setCurrentId(null);
-    setPostData({ title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
-
-  };
 
   if(!user?.result?.name) {
     return (

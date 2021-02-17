@@ -4,6 +4,8 @@ import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import Logo from '../../images/social-recipes-logo.png'
+import * as actionType from '../../constants/actionTypes';
+import decode from 'jwt-decode';
 import useStyles from './styles';
 
 const Header = () => {
@@ -16,7 +18,7 @@ const Header = () => {
   const logout = () => {
     dispatch({ type: 'LOGOUT'});
 
-    history.push('/');
+    history.push('/auth');
     setUser(null);
    };
 
@@ -24,7 +26,11 @@ const Header = () => {
   useEffect(() => {
     const token = user?.token;
 
-    // JWT ...
+    if(token) {
+      const decodedToken = decode(token);
+
+      if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
    }, [location]);

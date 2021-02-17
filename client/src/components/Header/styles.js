@@ -7,6 +7,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '5px 30px',
+    borderRadius: '5px'
   },
   logo: {
     marginLeft: '5px',
@@ -15,12 +16,12 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
-    width: '400px',
+    width: '300px',
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '400px',
+    width: '300px',
   },
   avatar: {
     backgroundColor: '#fff',

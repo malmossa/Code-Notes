@@ -2,11 +2,9 @@ import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
   title: String,
-  description: String,
   recipe: String,
   name: String,
   author: String,
-  tags: [String],
   uploadedImage: String,
   likes: {
     type: [String],

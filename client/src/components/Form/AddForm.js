@@ -9,7 +9,7 @@ import { createPost, updatePost } from '../../actions/posts';
 
 const AddForm = ({ currentId, setCurrentId }) => {
 
-  const [postData, setPostData] = useState({ title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
+  const [postData, setPostData] = useState({ title: '', recipe: '', uploadedImage: '' });
 
   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const classes = useStyle();
@@ -22,7 +22,7 @@ const AddForm = ({ currentId, setCurrentId }) => {
 
   const clear = () => {
     setCurrentId(0);
-    setPostData({ title: '', description: '', recipe: '', tags: '', uploadedImage: '' });
+    setPostData({ title: '', recipe: '', uploadedImage: '' });
 
   };
 
@@ -54,9 +54,7 @@ const AddForm = ({ currentId, setCurrentId }) => {
       <Typography align="center" variant="h6">{ currentId ? 'EDITING THIS RECIPE' : 'ADD NEW RECIPE'}</Typography>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <TextField name="title" variant="outlined" label="Title" required fullWidth size="small" value={postData.title} onChange={(event) => setPostData({ ...postData, title: event.target.value})} />
-        <TextField name="description" variant="outlined" label="Description" required rows="3" multiline fullWidth value={postData.description} onChange={(event) => setPostData({ ...postData, description: event.target.value})} />
-        <TextField name="recipe" variant="outlined" label="Recipe"  rows="10" required multiline fullWidth value={postData.recipe} onChange={(event) => setPostData({ ...postData, recipe: event.target.value})} />
-        <TextField name="tags" variant="outlined" label="Tags" fullWidth size="small" value={postData.tags} onChange={(event) => setPostData({ ...postData, tags: event.target.value.split(',')})} />
+        <TextField name="recipe" variant="outlined" label="Recipe"  rows="5" required multiline fullWidth value={postData.recipe} onChange={(event) => setPostData({ ...postData, recipe: event.target.value})} />
         <div className={classes.fileInput}>
           <FileBase type="file" multiple={false} onDone={({base64}) => setPostData({ ...postData, uploadedImage: base64})} />
         </div>

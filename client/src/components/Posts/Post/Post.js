@@ -39,7 +39,7 @@ const Post = ({post, setCurrentId}) => {
 
       <CardHeader
         avatar={
-          <Avatar className={classes.avatar}>{user?.result.name.charAt(0)}</Avatar>
+          <Avatar className={classes.avatar} alt={user?.result.name} src={user?.result.imageUrl}></Avatar>
         }
         title={post.title}
         subheader={moment(post.createdAt).fromNow()}
@@ -79,7 +79,7 @@ const Post = ({post, setCurrentId}) => {
 
         <IconButton size="small" color="secondary" onClick={() => dispatch(likePost(post._id))}>
           <ThumbUpIcon  fontSize="small" />
-          &nbsp; {post.likeCount} &nbsp;
+          &nbsp; {post.likes} &nbsp;
         </IconButton>
 
         <IconButton className={clsx(classes.expand, {

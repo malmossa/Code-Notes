@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Typography, CardHeader, CardMedia, CardContent, CardActions, IconButton, Avatar, Collapse, Button } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -15,6 +15,7 @@ import useStyle from './styles';
 import { deletePost, likePost } from '../../../actions/posts';
 
 const Post = ({post, setCurrentId}) => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const classes = useStyle();
   const dispatch = useDispatch();
 
@@ -38,7 +39,7 @@ const Post = ({post, setCurrentId}) => {
 
       <CardHeader
         avatar={
-          <Avatar className={classes.avatar}>M</Avatar>
+          <Avatar className={classes.avatar}>{user?.result.name.charAt(0)}</Avatar>
         }
         title={post.title}
         subheader={moment(post.createdAt).fromNow()}
@@ -67,7 +68,7 @@ const Post = ({post, setCurrentId}) => {
       <CardMedia className={classes.media} image={post.uploadedImage} title={post.title} />
 
       <CardContent>
-        <Typography className={classes.author} variant="body2" color="secondary" component="p">{`By - ${post.author}`}</Typography>
+        <Typography className={classes.author} variant="body2" color="secondary" component="p">{`By - ${post.name}`}</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {post.description}
         </Typography>

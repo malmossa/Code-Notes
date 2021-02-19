@@ -1,5 +1,5 @@
 {
-  "name": "social-recipes",
+  "name": "Social-Recipes",
   "version": "1.0.0",
   "description": "Full Stack code notes app ( MERN )",
   "main": "index.js",
@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/malmossa/Social-Recipes.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {

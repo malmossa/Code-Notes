@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts', postRoutes);
-
+app.use("/user", userRouter);
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

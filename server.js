@@ -16,10 +16,13 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+
+// Use Routes
 app.use('/posts', postRoutes);
 app.use("/user", userRouter);
 
 if(process.env.NODE_ENV === 'production') {
+  //Set static folder
   app.use(express.static('client/build'));
 
 }

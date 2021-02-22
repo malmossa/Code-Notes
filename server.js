@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 import postRoutes from './routes/posts.js';
-import userRouter from "./routes/users";
+
 
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(cors());
 
 // Use Routes
 app.use('/posts', postRoutes);
-app.use("/user", userRouter);
+
 
 
 if(process.env.NODE_ENV === 'production') {

@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 import postRoutes from './routes/posts.js';
+import userRouter from "./routes/user.js";
 
 
 
@@ -20,14 +21,8 @@ app.use(cors());
 
 // Use Routes
 app.use('/posts', postRoutes);
+app.use("/user", userRouter);
 
-
-
-if(process.env.NODE_ENV === 'production') {
-  //Set static folder
-  app.use(express.static('client/build'));
-
-}
 
 const PORT = process.env.PORT || 5000;
 

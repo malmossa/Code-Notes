@@ -21,7 +21,9 @@ app.use("/user", userRouter);
 
 const PORT = process.env.PORT|| 4000;
 
-
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))

@@ -1,6 +1,6 @@
 # Social-Recipes
 A Full Stack Project ( MERN )  
-try it with demo accout:
+try it with demo account:
 Email: user@demo.com
 Password: demouser
 

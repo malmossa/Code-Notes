@@ -1,5 +1,8 @@
 # Social-Recipes
 A Full Stack Project ( MERN )  
+try it with demo accout:
+Email: user@demo.com
+Password: demouser
 
 ## Live Demo
 Try the website live at: [https://social-recipes.herokuapp.com/](https://social-recipes.herokuapp.com/)
